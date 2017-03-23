@@ -1,7 +1,7 @@
 import wikipedia
 
 class webcrawler(object):
-    """This is where the algorithim that will find relational information will habitate"""
+    """Algorithm that will find relational information will habitate"""
 
 output = input("Enter a wiki search: ")
 
