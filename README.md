@@ -6,4 +6,4 @@ Web crawler designed to crawl wikipedia
  
  Here's the wiki site: https://en.wikipedia.org/wiki/Wikipedia:Unusual_articles
  
- Let me know what you think?
+ Let me know what you think? Sort of like a TIFU program
