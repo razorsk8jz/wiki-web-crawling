@@ -22,7 +22,7 @@ class WikispyderSpider(CrawlSpider):
         hxs = HtmlXPathSelector(response)
         item = WikicrawlerItem()
         item['title'] = hxs.select('//h1[contains(@id,"firstHeading")]/text()').extract()
-        item['imgURL'] = hxs.select('//div[contains(@class, "thumbinner")]//a/@href')[0].extract()
+#        item['imgURL'] = hxs.select('//div[contains(@class, "thumbinner")]//a/@href')[0].extract()
         print('---------------------------------------------------------------------')
 #        print(item['title'])
 #        print(item['imgURL'])
