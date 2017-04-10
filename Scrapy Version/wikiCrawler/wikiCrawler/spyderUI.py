@@ -1,10 +1,18 @@
 import tkinter as tk
 from tkinter import *
+import os
 
 
 def window():
     window = tk.Tk()
     window.geometry('600x600')
+
+def start_system():
+    os.system("start /B start cmd.exe @cmd /k scrapy crawl wikiSpyder")
+
+def stop_system():
+    os.chdir(r'C:\Windows\System32')
+    os.system('taskkill /F /IM cmd.exe /T')
 
 mWindow = tk.Tk()
 mWindow.geometry('545x520+0+0')
@@ -15,17 +23,16 @@ mWindow.config(bg='black')
 wtitle = tk.Label(mWindow, height = 2, text="WikiSpyder", font=('Ariel', 20, 'bold'), fg='green', bg='black')
 wtitle.grid(row=0, column=3, columnspan=2)
 
-# You can set any height and width you want
 blank_space_left = tk.Label(mWindow, width = 1, text=" ", font=('Ariel', 20, 'bold'), fg='green', bg='black')
 blank_space_left.grid(row=1, column=1)
 
-start_button = tk.Button(mWindow, height=5, width=16, font=('Helvetica', 12, 'bold'), text="Start", command=window)
+start_button = tk.Button(mWindow, height=5, width=16, font=('Helvetica', 12, 'bold'), text="Start", command=start_system)
 start_button.grid(row=1, column=2)
 
 blank_space = tk.Label(mWindow, height = 3, text=" ", font=('Ariel', 20, 'bold'), fg='green', bg='black')
 blank_space.grid(row=2, column=2)
 
-stop_button = tk.Button(mWindow, height=5, width=16, font=('Helvetica', 12, 'bold'), text="Stop", command=window)
+stop_button = tk.Button(mWindow, height=5, width=16, font=('Helvetica', 12, 'bold'), text="Stop", command=stop_system)
 stop_button.grid(row=3, column=2)
 
 blank_space = tk.Label(mWindow, height = 2, text=" ", font=('Ariel', 20, 'bold'), fg='green', bg='black')

@@ -8,7 +8,7 @@ class WikispyderSpider(CrawlSpider):
 
     custom_settings = {
         'ROBOTSTXT_OBEY': False,
-        'DOWNLOAD_DELAY': 5
+        'DOWNLOAD_DELAY': 2
     }
 
     allowed_domains = ['wikipedia.org']
@@ -21,8 +21,12 @@ class WikispyderSpider(CrawlSpider):
     def parse_link(self, response):
         hxs = HtmlXPathSelector(response)
         item = WikicrawlerItem()
-        item['title'] = hxs.select('//h1[contains(@id,"firstHeading")]/text()').extract()
-#        item['imgURL'] = hxs.select('//div[contains(@class, "thumbinner")]//a/@href')[0].extract()
+#        item['title'] = hxs.select('//h1[contains(@id,"firstHeading")]/text()').extract()
+        item['title'] = hxs.select('//title/text()').extract()
+        if (hxs.select('(//*[@class="thumbinner"]//img)[1]/@src').extract() == []):
+            item['imgURL'] = hxs.select('(//img)[1]/@src').extract()
+        else:
+            item['imgURL'] = hxs.select('//*[@id="mw-content-text"]/div[4]/div/a/@href').extract()
         print('---------------------------------------------------------------------')
 #        print(item['title'])
 #        print(item['imgURL'])

@@ -17,7 +17,7 @@ class WikicrawlerPipeline(object):
             raise DropItem()
         else:
             self.csvwriter = csv.writer(open('results.csv', 'a'), lineterminator = '\n')
-            self.csvwriter.writerow(item['title'])
+            self.csvwriter.writerow(tuple([item['title'], item['imgURL']]))
             self.ids_seen.add(tuple(item['title']))
             return item
 
@@ -27,5 +27,5 @@ class WikicrawlerPipeline(object):
         self.csvwriter.writerow({'Title', 'ImageURL'})
         self.ids_seen = set()
 
-
-
+    def close_spider(self, spider):
+        print("closing spider")
