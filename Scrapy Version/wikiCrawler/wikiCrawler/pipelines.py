@@ -1,17 +1,12 @@
 from scrapy.exceptions import DropItem
-# -*- coding: utf-8 -*-
-
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import csv
 
 class WikicrawlerPipeline(object):
-
+    #initialize ids_seen variable at beginning of program
     def __init__(self):
         self.ids_seen = set()
-
+        
+    #choose what items we keep and throw out then write to csv
     def process_item(self, item, spider):
         if item['title'] == [] or tuple(['title']) in self.ids_seen:
             raise DropItem()
@@ -22,10 +17,12 @@ class WikicrawlerPipeline(object):
             return item
 
 
+    #open csv writer as the spider open and create the header of the csv file
     def open_spider(self, spider):
         self.csvwriter = csv.writer(open('results.csv', 'a'))
         self.csvwriter.writerow({'Title', 'ImageURL'})
         self.ids_seen = set()
 
+    #print closing spider so we know it closed
     def close_spider(self, spider):
         print("closing spider")
