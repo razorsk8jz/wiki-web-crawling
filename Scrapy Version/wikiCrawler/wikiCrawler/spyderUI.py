@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 import os
+from wikiCrawler.settings import DOWNLOAD_DELAY
 
 
 def window():
@@ -13,6 +14,16 @@ def start_system():
 def stop_system():
     os.chdir(r'C:\Windows\System32')
     os.system('taskkill /F /IM cmd.exe /T')
+
+def inc_delay():
+    global DOWNLOAD_DELAY
+    DOWNLOAD_DELAY += 1
+    print(DOWNLOAD_DELAY)
+
+def dec_delay():
+    global DOWNLOAD_DELAY
+    DOWNLOAD_DELAY -= 1
+    print(DOWNLOAD_DELAY)
 
 mWindow = tk.Tk()
 mWindow.geometry('545x520+0+0')
@@ -38,10 +49,10 @@ stop_button.grid(row=3, column=2)
 blank_space = tk.Label(mWindow, height = 2, text=" ", font=('Ariel', 20, 'bold'), fg='green', bg='black')
 blank_space.grid(row=4, column=2)
 
-increment_button = tk.Button(mWindow, height=5, width=16, font=('Helvetica', 12, 'bold'), text="Increment", command=window)
+increment_button = tk.Button(mWindow, height=5, width=16, font=('Helvetica', 12, 'bold'), text="Increment", command=inc_delay)
 increment_button.grid(row=1, column=5)
 
-decrement_button = tk.Button(mWindow, height=5, width=16, font=('Helvetica', 12, 'bold'), text="Decrement", command=window)
+decrement_button = tk.Button(mWindow, height=5, width=16, font=('Helvetica', 12, 'bold'), text="Decrement", command=dec_delay)
 decrement_button.grid(row=3, column=5)
 
 entry_box = Entry(mWindow, width = 60)
@@ -54,29 +65,3 @@ quit_button = tk.Button(mWindow, text="QUIT", font=('Helvetica', 12, 'bold'), fg
 quit_button.grid(row=5, column=4)
 
 mWindow.mainloop()
-
-#    def create_widgets(self):
-#        self.start_button = tk.Button(self)
-#        self.start_button.config(height = 50, width = 100)
-#        self.start_button.grid(row=0, column=1)
-#        self.start_button["text"] = "Start"
-#        self.start_button["command"] = self.start_crawler
-#        self.start_button.pack(side="top")
-
-#        self.stop_button = tk.Button(self)
-#        self.stop_button.config(height = 50, width = 100)
-#        self.start_button.grid(row=1, column=1)
-#        self.stop_button["text"] = "Stop"
-#        self.stop_button["command"] = self.stop_crawler
-#        self.stop_button.pack(side="top")
-
-#        self.quit = tk.Button(self, text="QUIT", fg="red",
-#                              command=root.destroy)
-#        self.quit.pack(side="bottom")
-
-#    def start_crawler(self):
-#        print("Starting WikiSpyder")
-
-
-#    def stop_crawler(self):
-#        print("Stopping WikiSpyder")

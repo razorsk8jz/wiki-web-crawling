@@ -8,7 +8,7 @@ class WikispyderSpider(CrawlSpider):
 
     custom_settings = {
         'ROBOTSTXT_OBEY': False,
-        'DOWNLOAD_DELAY': 2
+        'download_delay': 3
     }
 
     allowed_domains = ['wikipedia.org']
