@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import *
 import os
+import wikipedia
 from wikiCrawler.settings import DOWNLOAD_DELAY
 
 #create a window 600x600
@@ -35,6 +36,7 @@ mWindow = tk.Tk()
 mWindow.geometry('545x520+0+0')
 mWindow.title('SpyderUI')
 mWindow.config(bg='black')
+ment = tk.StringVar()
 
 #separte function to search a specific article in wiki
 def summary_algorithm():
