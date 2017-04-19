@@ -36,13 +36,19 @@ mWindow = tk.Tk()
 mWindow.geometry('545x520+0+0')
 mWindow.title('SpyderUI')
 mWindow.config(bg='black')
-ment = tk.StringVar()
+input = tk.StringVar()
 
 #separte function to search a specific article in wiki
 def summary_algorithm():
-    output = ment.get()
+    output = input.get()
     get_summary = lambda output: wikipedia.summary(output).encode('utf-8').strip()
     print(get_summary(output))
+    win = tk.Toplevel()
+    win.wm_title(input.get())
+    l = tk.Label(win, text=get_summary(input.get()), wraplength=600)
+    l.grid(row=5, column=25)
+    b = tk.Button(win, text="Okay", command=win.destroy)
+    b.grid(row=1, column=0)
 
 #add title to window
 wtitle = tk.Label(mWindow, height = 2, text="WikiSpyder", font=('Ariel', 20, 'bold'), fg='green', bg='black')
@@ -77,7 +83,7 @@ decrement_button = tk.Button(mWindow, height=5, width=16, font=('Helvetica', 12,
 decrement_button.grid(row=3, column=5)
 
 #create search box
-entry_box = Entry(mWindow, width=60 ,textvariable = ment)
+entry_box = Entry(mWindow, width=60 ,textvariable = input)
 entry_box.grid(row=4, column=2, columnspan=4)
 
 #add search button to grid
